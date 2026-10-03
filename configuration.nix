@@ -28,18 +28,18 @@
   nix-homebrew = {
     enable = true;
     inherit user;
+    # This Mac already had Homebrew at /opt/homebrew; adopt it instead of refusing.
+    autoMigrate = true;
   };
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";  # remove anything not listed here
+    onActivation.cleanup = "none";  # keep Homebrew packages installed outside this list
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "herdr"
     ];
-    casks = [
-      "wezterm"
-      "claude-code"
-    ];
+    # WezTerm and Claude Code are already installed outside Homebrew on this Mac.
+    casks = [ ];
   };
 }
