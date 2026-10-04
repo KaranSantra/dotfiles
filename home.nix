@@ -101,6 +101,17 @@ in
   home.file.".config/herdr".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
 
-  # Claude settings, global agent instructions, and Pi configs are deliberately not linked:
+
+  # Keep Pi's credential and runtime state local by linking only authored files and directories.
+  home.file.".pi/agent/themes".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/themes";
+  home.file.".pi/agent/extensions".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/extensions";
+  home.file.".pi/agent/models.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/models.json";
+  home.file.".pi/agent/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.pi/agent/settings.json";
+
+  # Claude settings and global agent instructions are deliberately not linked:
   # this Mac keeps its own (see AGENTS.md).
 }
